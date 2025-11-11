@@ -28,7 +28,7 @@ export default function AdicionarAtividade() {
                 source={require('../../assets/images/logo_planEdu.jpeg')}
                 style={styles.image}
             />
-            <Text style={styles.titulo}>Título</Text>
+            <Text style={styles.title}>Título</Text>
             <TextInput
                 value={titulo}
                 onChangeText={setTitulo}
@@ -36,7 +36,7 @@ export default function AdicionarAtividade() {
                 style={styles.input}
             />
 
-            <Text style={styles.titulo}>Data de entrega</Text>
+            <Text style={styles.title}>Data de entrega</Text>
             <Button title="Selecionar Data" onPress={() => setDatePickerVisibility(true)} />
             {data && (
                 <Text style={{fontWeight: 'bold', left: 10, marginBottom: 10,}}>
@@ -50,7 +50,7 @@ export default function AdicionarAtividade() {
                 onCancel={() => setDatePickerVisibility(false)}
             />
 
-            <Text style={styles.titulo}>Descrição</Text>
+            <Text style={styles.title}>Descrição</Text>
             <TextInput
                 value={descricao}
                 onChangeText={setDescricao}
@@ -60,7 +60,7 @@ export default function AdicionarAtividade() {
             />
 
             <TouchableOpacity onPress={() => salvarAtividade(titulo, data, descricao, router)}>
-                <Text style={styles.ButtonText}>Salvar atividade</Text>
+                <Text style={styles.buttonText}>Salvar atividade</Text>
             </TouchableOpacity>
         </View>
     )};
@@ -72,5 +72,14 @@ export default function AdicionarAtividade() {
         image: {
             height: 100,
             width: 100,
+        },
+        title :{
+
+        },
+        input:{
+
+        },
+        buttonText:{
+
         }
     });
