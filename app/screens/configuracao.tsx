@@ -2,7 +2,8 @@ import React from "react";
 import { View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
 import { useRouter } from 'expo-router';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {styles} from '../styles/styles1';
+import {styles} from '../../styles/styles3';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Configuracoes() {
   const router = useRouter();
@@ -64,11 +65,11 @@ export default function Configuracoes() {
     { title: "Editar perfil", onPress: () => router.push("/screens/editarPerfil") },
     { title: "Suporte", onPress: () => router.push("/screens/suporte") },
     { title: "Sair da conta", onPress: sairDaConta },
-    { title: "Deletar conta", onPress: deletarConta },
+    { title: "Deletar conta", onPress: deletarConta, isDanger:true },
   ];
 
   const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.container}>
+    <View style={styles.container1}>
       <TouchableOpacity onPress={item.onPress}>
         <Text style={styles.titleLista}>{item.title}</Text>
       </TouchableOpacity>
@@ -77,11 +78,15 @@ export default function Configuracoes() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}> 
+        <Ionicons name='settings-sharp' size ={29} color = 'white'/>
+        <Text style={styles.text}> Configurações</Text></View>
       <FlatList
         data={opcoes}
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
       />
     </View>
+
   );
 }

@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 //import { styles } from "../styles/styles2"
 import { format } from 'date-fns';
 import { useRouter } from "expo-router";
-import { salvarAtividade } from "../services/salvarAtividades";
+import { salvarAtividade } from "../../services/salvarAtividades";
 import { Background } from "@react-navigation/elements";
 
 export default function AdicionarAtividade() {

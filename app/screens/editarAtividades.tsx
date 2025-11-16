@@ -3,7 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { editarAtividade } from '../services/editarAtividade';
+import { editarAtividade } from '../../services/editarAtividade';
 
 export default function EditarAtividadeScreen() {
 

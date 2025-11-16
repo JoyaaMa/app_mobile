@@ -1,10 +1,10 @@
 import React, {useState, useCallback} from 'react';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { View, Text, FlatList, TouchableOpacity, Alert, BackHandler } from 'react-native';
-import { styles } from "../styles/styles1";
+import { styles } from "../../styles/styles1";
 import { useRouter } from 'expo-router';
-import { excluirAtividade } from '../services/excluirTarefa'
-import { useAtividades } from '../services/carregarAtividades'
+import { excluirAtividade } from '../../services/excluirTarefa'
+import { useAtividades } from '../../services/carregarAtividades'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 

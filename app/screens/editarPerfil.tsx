@@ -105,6 +105,7 @@ export default function EditarPerfil() {
 
 const styles = StyleSheet.create({
   container: {
+    margin:0,
     padding: 20,
     flex: 1,
     backgroundColor: '#fff',
