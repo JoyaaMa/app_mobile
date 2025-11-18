@@ -40,16 +40,16 @@ export const styles = StyleSheet.create({
 
     titleLista: {
         color:'#ebebebff',
-        backgroundColor:'#469be7ff',
+        backgroundColor:'#0662b0',
         fontSize: 20,
         fontWeight: 'bold',
-        borderRadius:15,
+        borderRadius:100,
         borderWidth:0.5,
         borderColor:'#454545ff',
-        height:80,
+        height:60,
         width:300,
         textAlign:'center',
-        paddingTop:20,    
+        paddingTop:15,    
     },
 
     
