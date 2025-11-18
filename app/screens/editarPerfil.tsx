@@ -98,27 +98,40 @@ export default function EditarPerfil() {
         secureTextEntry
       />
 
+     <View style={styles.boto}>
       <Button title="Salvar Alterações" onPress={salvarAlteracoes} />
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    flex: 1,
-    backgroundColor: '#fff',
+    flex:1,
+    margin:0,
+    padding: 30,
+    backgroundColor: '#fff',  
   },
+  //texto
   label: {
     fontWeight: 'bold',
-    marginTop: 15,
+    margin:5,
+    padding:4,
   },
+  //caixa 
   input: {
+    alignItems:'center',
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 20,
     padding: 10,
-    marginTop: 5,
+    marginTop: 7,
+    marginBottom:5,
   },
+
+  boto:{
+    padding:5,
+    margin:24,
+  }
 });
 

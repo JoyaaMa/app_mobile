@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'f5f5f5#',
         margin: 0,
         padding: 0,
     },
@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
 
     },
     botaoEditar:{
+        textAlign:'center',
         padding: 10,
         borderWidth: 2,
         borderRadius: 10,
