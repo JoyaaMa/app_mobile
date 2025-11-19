@@ -1,9 +1,11 @@
 import { format, parse } from 'date-fns';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { editarAtividade } from '../services/editarAtividade';
+import { Dimensions } from 'react-native';
+
 
 export default function EditarAtividadeScreen() {
 
@@ -33,14 +35,20 @@ export default function EditarAtividadeScreen() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.header}>
+                <Text style={styles.titleSupremo}>Editar Atividade</Text>
+            </View>
+            <Text>Título</Text>
             <TextInput
                 placeholder="Título"
                 value={tituloEdit}
                 onChangeText={setTituloEdit}
-                style={styles.input}
+                style={styles.inputContainer}
             />
 
-            <Button title="Selecionar Data" onPress={() => setDatePickerVisibility(true)} />
+            <TouchableOpacity style={[styles.button, {backgroundColor: '#87CEFA'}, {width: '50%'}]} onPress={() => setDatePickerVisibility(true)}>
+                <Text>Selecionar</Text>
+            </TouchableOpacity>
                 {data && (
                     <Text style={{ marginTop: 8 }}>
                     Data selecionada: {format(dataEdit, 'dd/MM/yyyy')}
@@ -57,27 +65,106 @@ export default function EditarAtividadeScreen() {
                 placeholder="Descrição"
                 value={descricaoEdit}
                 onChangeText={setDescricaoEdit}
-                style={styles.input}
+                style={styles.inputContainer}
             />
 
-            <Button
-                title="Salvar alterações"
+            <TouchableOpacity
                 onPress={async () => {
                     await editarAtividade(idAtividade, tituloEdit, dataEdit, descricaoEdit);
                     router.back(); 
                 }}
-            />
+            >
+                <Text>Salvar alteralções</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 12,
-    marginBottom: 15,
-    borderRadius: 5,
-  },
-});
+    container: {
+                justifyContent: 'center',
+                backgroundColor: '#E8E8E8'
+            },
+            card: {
+                backgroundColor: '#F8F8FF',
+                width: '85%',
+                borderRadius: 20,
+                paddingVertical: 30,
+                paddingHorizontal: 25,
+                marginTop: 20,
+                marginLeft: 20,
+            },
+            header: {
+                    width: '100%',
+                    height: Dimensions.get('window').height/6,
+                    justifyContent: 'center',
+                    backgroundColor: "#F8F8FF",
+                    borderBottomEndRadius: 20,
+                    borderBottomLeftRadius: 20,
+                    
+               },
+            image:{
+                    width: 90, 
+                    height: 90,
+                    borderRadius: 30,
+                },
+            logo: {
+                fontSize: 22,
+                fontWeight: 'bold',
+                color: '#2563EB',
+                marginBottom: 10,
+            },
+            titleSupremo:{
+                fontSize: 25,
+                color: '#4169E1',
+                fontWeight: 'bold',
+                marginBottom: 20,
+                marginLeft: 20,
+            },
+            title: {
+                fontSize: 18,
+                fontWeight: '600',
+                color: '#1E3A8A',
+                marginBottom: 10,
+            },
+            inputContainer: {
+                flexDirection: 'row',
+                alignItems: 'center',
+                backgroundColor: '#F9FAFB',
+                borderWidth: 1,
+                borderColor: '#E5E7EB',
+                borderRadius: 12,
+                paddingHorizontal: 10,
+                width: '90%',
+                marginBottom: 30,
+            },
+            button: {
+                backgroundColor: '#2563EB',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '70%',
+                height: 45,
+                borderRadius: 12,
+                marginTop: 10,
+            },
+            buttonText: {
+                color: '#fff',
+                fontWeight: '600',
+                fontSize: 16,
+                marginRight: 6,
+            },
+            footer: {
+                flexDirection: 'row',
+                marginTop: 20,
+            },
+            footerText: {
+                color: '#374151',
+            },
+            footerLink: {
+                color: '#2563EB',
+                fontWeight: '600',
+            },
+        });
+    
+    
