@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, Text, TextInput, TouchableOpacity, View, Image } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { StyleSheet } from "react-native";
-
 import { format } from 'date-fns';
 import { useRouter } from "expo-router";
-import { salvarAtividade } from "../services/salvarAtividades";
+import { salvarAtividade } from "../../services/salvarAtividades";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions } from "react-native";
+import { Background } from "@react-navigation/elements";
 
 export default function AdicionarAtividade() {
 
