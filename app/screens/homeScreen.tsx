@@ -102,17 +102,19 @@ export default function ListaUsuarios() {
         />
         <MaterialCommunityIcons name='account-circle' color='#4876FF' size={30}/>
         </View>
+        <View>
         <Text style={styles.title}>Lista de Atividades</Text>
         <LinearGradient colors={['#4876FF', '#00CDCD']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.contagem}>
-            <Text style={{ fontSize: 16 ,fontWeight: 'bold', color: '#FFFF' }}>Você tem {atividades.length} atividades</Text>
+            <Text style={{ fontSize: 16 ,fontWeight: 'bold', color: '#FFFF' ,}}>Você tem {atividades.length} atividades</Text>
         </LinearGradient>
+        </View>
       </View>
 
           <FlatList
             data={atividades}
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
-            ListEmptyComponent={<Text>Nenhuma atividade cadastrada.</Text>}
+            ListEmptyComponent={<Text style={styles.ras}>Nenhuma atividade cadastrada.</Text>}
           />    
 
     </View>
@@ -123,6 +125,7 @@ export default function ListaUsuarios() {
       backgroundColor: '#E8E8E8'
     },
    header: {
+        
         width: '100%',
         height: Dimensions.get('window').height/4,
         justifyContent: 'center',
@@ -138,8 +141,8 @@ export default function ListaUsuarios() {
       margin: 10,
    },
     title:{
-      fontSize: 30,
-      marginLeft: 25,
+      fontSize: 29,
+      marginLeft: 65,
       color: '#4169E1',
       fontWeight: 'bold',
     },
@@ -150,11 +153,12 @@ export default function ListaUsuarios() {
       marginBottom: 10,
     },
     contagem:{
+      alignItems:'center',
       margin: 10,
       marginTop: 20,
-      marginLeft: 25,
-      marginRight: 25,
-      padding: 15,
+      marginLeft: 55,
+      marginRight: 55,
+      padding: 10,
       justifyContent: 'center',
       textAlign: 'center',
       borderRadius: 15,
@@ -188,6 +192,15 @@ export default function ListaUsuarios() {
       flexWrap: 'wrap',
       width: '100%',
 },
+
+ras:{
+      marginLeft:55,
+      marginTop:230,
+      alignItems:'center',
+      fontSize: 18,
+      fontWeight: '600',
+      color: '#1E3A8A',
+      marginBottom: 10,},
 
   })
 

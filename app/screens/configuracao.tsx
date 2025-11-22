@@ -79,7 +79,7 @@ export default function Configuracoes() {
   return (
     <View style={styles.container}>
       <View style={styles.header}> 
-        <Ionicons name='settings-sharp' size ={29} color = 'white'/>
+        <Ionicons name='settings-sharp' size ={29} color = '#4169E1'/>
         <Text style={styles.text}> Configurações</Text></View>
       <FlatList
         data={opcoes}

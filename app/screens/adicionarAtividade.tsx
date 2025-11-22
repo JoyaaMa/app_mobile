@@ -8,6 +8,7 @@ import { salvarAtividade } from "../../services/salvarAtividades";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions } from "react-native";
 import { Background } from "@react-navigation/elements";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function AdicionarAtividade() {
 
@@ -26,11 +27,12 @@ export default function AdicionarAtividade() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <Ionicons name='pencil-sharp' size ={31} color = '#4169E1'/>
                 <Text style={styles.titleSupremo}>Adicionar Atividade</Text>
             </View>
                 <View>
                     <View style={styles.card}>
-                    <Text style={styles.title}>Título</Text>
+                    <Text style={styles.title}>Título:</Text>
                         <TextInput
                             value={titulo}
                             onChangeText={setTitulo}
@@ -53,7 +55,7 @@ export default function AdicionarAtividade() {
                         onConfirm={handleConfirm}
                         onCancel={() => setDatePickerVisibility(false)}
                     />
-                    <Text style={styles.title}>Descrição</Text>
+                    <Text style={styles.title}>Descrição:</Text>
                     <TextInput
                         value={descricao}
                         onChangeText={setDescricao}
@@ -77,7 +79,8 @@ export default function AdicionarAtividade() {
         },
         card: {
             backgroundColor: '#F8F8FF',
-            width: '85%',
+            width: '90%',
+            height:'85%',
             borderRadius: 20,
             paddingVertical: 30,
             paddingHorizontal: 25,
@@ -85,12 +88,14 @@ export default function AdicionarAtividade() {
             marginLeft: 20,
         },
         header: {
-                width: '100%',
-                height: Dimensions.get('window').height/6,
-                justifyContent: 'center',
-                backgroundColor: "#F8F8FF",
-                borderBottomEndRadius: 20,
-                borderBottomLeftRadius: 20,
+            flexDirection:'row',
+            paddingLeft:20,
+            borderBottomEndRadius: 20,
+            borderBottomLeftRadius: 20,
+            width: '100%',
+            height: Dimensions.get('window').height/8,
+            backgroundColor: '#F8F8FF',
+            alignItems:'center',
                 
            },
         image:{
@@ -108,8 +113,9 @@ export default function AdicionarAtividade() {
             fontSize: 25,
             color: '#4169E1',
             fontWeight: 'bold',
-            marginBottom: 20,
-            marginLeft: 20,
+            marginBottom: 0,
+            marginLeft: 25,
+            marginTop:0,
         },
         title: {
             fontSize: 18,
@@ -139,7 +145,7 @@ export default function AdicionarAtividade() {
             marginTop: 10,
         },
         buttonText: {
-            color: '#fff',
+            color: '#ffffffff',
             fontWeight: '600',
             fontSize: 16,
             marginRight: 6,
