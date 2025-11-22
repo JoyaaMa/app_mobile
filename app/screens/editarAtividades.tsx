@@ -5,6 +5,7 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Dimensions } from 'react-native';
 import { editarAtividade } from '../../services/editarAtividade';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function EditarAtividadeScreen() {
 
@@ -34,59 +35,65 @@ export default function EditarAtividadeScreen() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.titleSupremo}>Editar Atividade</Text>
-            </View>
-            <Text>Título</Text>
-            <TextInput
-                placeholder="Título"
-                value={tituloEdit}
-                onChangeText={setTituloEdit}
-                style={styles.inputContainer}
-            />
+                 <View style={styles.header}>
+                      <Ionicons name='pencil-sharp' size ={31} color = '#4169E1'/>
+                     <Text style={styles.titleSupremo}>Editar Atividade</Text>
+                </View>
 
-            <TouchableOpacity style={[styles.button, {backgroundColor: '#87CEFA'}, {width: '50%'}]} onPress={() => setDatePickerVisibility(true)}>
-                <Text>Selecionar</Text>
-            </TouchableOpacity>
-                {data && (
-                    <Text style={{ marginTop: 8 }}>
-                    Data selecionada: {format(dataEdit, 'dd/MM/yyyy')}
-                    </Text>
-                )}
-            <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={() => setDatePickerVisibility(false)}
-            />
+                <View style={styles.card}>
+                    <Text style={styles.title}>Título:</Text>
+                    <TextInput
+                        placeholder="Título"
+                        value={tituloEdit}
+                        onChangeText={setTituloEdit}
+                        style={styles.inputContainer}
+                    />
 
-            <TextInput
-                placeholder="Descrição"
-                value={descricaoEdit}
-                onChangeText={setDescricaoEdit}
-                style={styles.inputContainer}
-            />
 
-            <TouchableOpacity
-                onPress={async () => {
-                    await editarAtividade(idAtividade, tituloEdit, dataEdit, descricaoEdit);
-                    router.back(); 
-                }}
-            >
-                <Text>Salvar alteralções</Text>
-            </TouchableOpacity>
+                         <Text style={styles.title}>Data de entrega</Text>
+                 <TouchableOpacity style={[styles.button, {backgroundColor: '#87CEFA'}, {width: '50%'}]} onPress={() => setDatePickerVisibility(true)}>
+                            <Text style={styles.buttonText}>Selecionar</Text>
+                 </TouchableOpacity>
+                      {data && (
+                         <Text style={{ marginTop: 10, color:'black', fontWeight: 'bold', marginBottom: 20, }}> Data selecionada: {format(dataEdit, 'dd/MM/yyyy')}
+                        </Text>
+                    )}
+
+                            
+                     <Text style={[styles.title,  {marginTop: 8}]}>Descrição</Text>
+ 
+                     <DateTimePickerModal
+                        isVisible={isDatePickerVisible}
+                        mode="date"
+                        onConfirm={handleConfirm}
+                        onCancel={() => setDatePickerVisibility(false)}
+                     />
+
+                    <TextInput
+                        placeholder="Descrição"
+                        value={descricaoEdit}
+                        onChangeText={setDescricaoEdit}
+                        style={styles.inputContainer}
+                    />
+
+                   <TouchableOpacity style={[styles.button, {width: '100%', backgroundColor:'#2563EB'}]}
+                        onPress={async () => { await editarAtividade(idAtividade, tituloEdit, dataEdit, descricaoEdit);router.back();}} >
+                      <Text style={styles.buttonText}>Salvar alterações</Text>
+                   </TouchableOpacity>
+                </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+            container: {
                 justifyContent: 'center',
                 backgroundColor: '#E8E8E8'
             },
             card: {
+                height:'85%',
+                width:'90%',
                 backgroundColor: '#F8F8FF',
-                width: '85%',
                 borderRadius: 20,
                 paddingVertical: 30,
                 paddingHorizontal: 25,
@@ -94,12 +101,14 @@ const styles = StyleSheet.create({
                 marginLeft: 20,
             },
             header: {
-                    width: '100%',
-                    height: Dimensions.get('window').height/6,
-                    justifyContent: 'center',
-                    backgroundColor: "#F8F8FF",
+                    flexDirection:'row',
+                    paddingLeft:50,
                     borderBottomEndRadius: 20,
                     borderBottomLeftRadius: 20,
+                    width: '100%',
+                    height: Dimensions.get('window').height/8,
+                    backgroundColor: '#F8F8FF',
+                    alignItems:'center',
                     
                },
             image:{
@@ -117,12 +126,13 @@ const styles = StyleSheet.create({
                 fontSize: 25,
                 color: '#4169E1',
                 fontWeight: 'bold',
-                marginBottom: 20,
-                marginLeft: 20,
+                marginBottom: 0,
+                marginLeft: 25,
+                marginTop:0,
             },
             title: {
                 fontSize: 18,
-                fontWeight: '600',
+                fontWeight: '500',
                 color: '#1E3A8A',
                 marginBottom: 10,
             },
@@ -138,7 +148,7 @@ const styles = StyleSheet.create({
                 marginBottom: 30,
             },
             button: {
-                backgroundColor: '#2563EB',
+                color:'white',
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -164,6 +174,9 @@ const styles = StyleSheet.create({
                 color: '#2563EB',
                 fontWeight: '600',
             },
+
+
+
         });
     
     

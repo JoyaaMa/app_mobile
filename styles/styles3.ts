@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         margin: 0,
         padding: 0,
-        backgroundColor: 'f5f5f5#',
+        backgroundColor: '#E8E8E8',
         alignItems:'center',
 
     },
@@ -13,9 +13,11 @@ export const styles = StyleSheet.create({
     header:{
         flexDirection:'row',
         paddingLeft:15,
+        borderBottomEndRadius: 20,
+        borderBottomLeftRadius: 20,
         width: '100%',
-        height: Dimensions.get('window').height/10,
-        backgroundColor: '#0662b0',
+        height: Dimensions.get('window').height/8,
+        backgroundColor: '#F8F8FF',
         alignItems:'center',
 
     },
@@ -25,7 +27,7 @@ export const styles = StyleSheet.create({
         fontSize: 25,
         marginTop: 0,
         fontWeight: 'bold',
-        color: '#ebebebff',
+        color: '#4169E1',
 
     },
 
@@ -40,7 +42,7 @@ export const styles = StyleSheet.create({
 
     titleLista: {
         color:'#ebebebff',
-        backgroundColor:'#0662b0',
+        backgroundColor:'#2563EB',
         fontSize: 20,
         fontWeight: 'bold',
         borderRadius:100,
@@ -50,6 +52,7 @@ export const styles = StyleSheet.create({
         width:300,
         textAlign:'center',
         paddingTop:15,    
+        
     },
 
     
