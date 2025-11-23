@@ -9,7 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { KeyboardAvoidingView } from 'react-native';
+import { Platform } from 'react-native';
 export default function ListaUsuarios() {
 
   const {atividades, carregarAtividades} = useAtividades();
@@ -54,7 +55,7 @@ export default function ListaUsuarios() {
 
   // Função para renderizar cada item da lista
   const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.container}>
+    <View>
         <View style={styles.boxAtividade}>
           <View style={{flex: 1}}>
             <Text style={styles.titleList}>{item.titulo}</Text>
@@ -92,7 +93,15 @@ export default function ListaUsuarios() {
   );
 
   return (
-    <View  style={[StyleSheet.absoluteFillObject, styles.container]}>
+      <View style={styles.background}>
+                      <LinearGradient
+                      colors={['#E8F0FF', '#C5D8FF']}
+                      style={StyleSheet.absoluteFillObject}
+                      ></LinearGradient>
+                              <KeyboardAvoidingView
+                                  behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                                  style={styles.container}
+                              ></KeyboardAvoidingView>
       
       <View style={styles.header}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginRight: 10,}}>
@@ -102,7 +111,7 @@ export default function ListaUsuarios() {
         />
         <MaterialCommunityIcons name='account-circle' color='#4876FF' size={30}/>
         </View>
-        <View>
+        <View style={{alignItems: 'center'}}>
         <Text style={styles.title}>Lista de Atividades</Text>
         <LinearGradient colors={['#4876FF', '#00CDCD']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.contagem}>
             <Text style={{ fontSize: 16 ,fontWeight: 'bold', color: '#FFFF' ,}}>Você tem {atividades.length} atividades</Text>
@@ -121,17 +130,25 @@ export default function ListaUsuarios() {
   );
 }
   const styles = StyleSheet.create({
+    background:{
+      flex: 1,
+    },
     container:{
-      backgroundColor: '#E8E8E8'
+      backgroundColor: '#E8E8E8',
+      
     },
    header: {
         
         width: '100%',
-        height: Dimensions.get('window').height/4,
+        height: Dimensions.get('window').height/5,
         justifyContent: 'center',
         backgroundColor: "#F8F8FF",
         borderBottomEndRadius: 20,
         borderBottomLeftRadius: 20,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 5,
         
    },
    img: {
@@ -142,7 +159,6 @@ export default function ListaUsuarios() {
    },
     title:{
       fontSize: 29,
-      marginLeft: 65,
       color: '#4169E1',
       fontWeight: 'bold',
     },
@@ -155,13 +171,14 @@ export default function ListaUsuarios() {
     contagem:{
       alignItems:'center',
       margin: 10,
-      marginTop: 20,
+      marginTop: 5,
       marginLeft: 55,
       marginRight: 55,
       padding: 10,
       justifyContent: 'center',
       textAlign: 'center',
       borderRadius: 15,
+      width: '80%'
     },
     boxAtividade:{
       margin: 20,
@@ -169,6 +186,10 @@ export default function ListaUsuarios() {
       flexDirection: 'row',
       backgroundColor: '#F8F8FF',
       borderRadius: 20,
+      shadowColor: '#000',
+      shadowOpacity: 0.1,
+      shadowRadius: 10,
+      elevation: 5,
       
     },
     botaoExcluir:{

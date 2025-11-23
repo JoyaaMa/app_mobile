@@ -5,7 +5,10 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Dimensions } from 'react-native';
 import { editarAtividade } from '../../services/editarAtividade';
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
+import { KeyboardAvoidingView} from 'react-native';
+import { Platform } from 'react-native';
 
 export default function EditarAtividadeScreen() {
 
@@ -34,8 +37,17 @@ export default function EditarAtividadeScreen() {
     }, [id, titulo, descricao, data]);
 
     return (
-        <View style={styles.container}>
-                 <View style={styles.header}>
+        <View style={styles.background}>
+                    <LinearGradient
+                        colors={['#E8F0FF', '#C5D8FF']}
+                        style={StyleSheet.absoluteFillObject}
+                    ></LinearGradient>
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                        style={styles.container}
+                    ></KeyboardAvoidingView>
+        
+                <View style={styles.header}>
                       <Ionicons name='pencil-sharp' size ={31} color = '#4169E1'/>
                      <Text style={styles.titleSupremo}>Editar Atividade</Text>
                 </View>
@@ -48,135 +60,151 @@ export default function EditarAtividadeScreen() {
                         onChangeText={setTituloEdit}
                         style={styles.inputContainer}
                     />
-
-
-                         <Text style={styles.title}>Data de entrega</Text>
-                 <TouchableOpacity style={[styles.button, {backgroundColor: '#87CEFA'}, {width: '50%'}]} onPress={() => setDatePickerVisibility(true)}>
-                            <Text style={styles.buttonText}>Selecionar</Text>
-                 </TouchableOpacity>
-                      {data && (
-                         <Text style={{ marginTop: 10, color:'black', fontWeight: 'bold', marginBottom: 20, }}> Data selecionada: {format(dataEdit, 'dd/MM/yyyy')}
-                        </Text>
-                    )}
-
-                            
-                     <Text style={[styles.title,  {marginTop: 8}]}>Descrição</Text>
+                    
  
-                     <DateTimePickerModal
+                    <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="date"
                         onConfirm={handleConfirm}
                         onCancel={() => setDatePickerVisibility(false)}
-                     />
-
+                    />
+                    <Text style={[styles.title, {marginTop: 8}]}>Descrição</Text>
                     <TextInput
-                        placeholder="Descrição"
+                        placeholder="Descrição:"
                         value={descricaoEdit}
                         onChangeText={setDescricaoEdit}
                         style={styles.inputContainer}
                     />
 
-                   <TouchableOpacity style={[styles.button, {width: '100%', backgroundColor:'#2563EB'}]}
+                    <Text style={styles.title}>Data:</Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                        {data && (
+                            <Text style={{fontWeight: 'bold', marginTop: 10, fontSize: 16,}}>
+                                Data selecionada: {format(dataEdit, 'dd/MM/yyyy')}
+                            </Text>
+                        )}
+                        <TouchableOpacity style={[styles.button, {backgroundColor: '#4682B4'}, {width: '20%'}]} onPress={() => setDatePickerVisibility(true)}>
+                            <MaterialCommunityIcons name='calendar-today' size ={30} color = 'white'/>
+                        </TouchableOpacity>
+
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleConfirm}
+                            onCancel={() => setDatePickerVisibility(false)}
+                        />
+                        
+                    </View>
+
+                   <TouchableOpacity style={[styles.button, {width: '100%', backgroundColor:'#2563EB'}, {marginTop: 70,}]}
                         onPress={async () => { await editarAtividade(idAtividade, tituloEdit, dataEdit, descricaoEdit);router.back();}} >
                       <Text style={styles.buttonText}>Salvar alterações</Text>
                    </TouchableOpacity>
                 </View>
-        </View>
+                </View>
     );
 }
 
 const styles = StyleSheet.create({
-            container: {
-                justifyContent: 'center',
-                backgroundColor: '#E8E8E8'
+        background:{
+            flex: 1,
+        },
+        container: {
+            justifyContent: 'center',
+            backgroundColor: '#E8E8E8',
+        },
+        card: {
+            backgroundColor: '#F8F8FF',
+            width: '90%',
+            borderRadius: 20,
+            paddingVertical: 30,
+            paddingHorizontal: 25,
+            marginTop: 20,
+            marginLeft: 20,
+            marginRight: 20,
+            justifyContent: 'flex-start',
+            shadowColor: '#000',
+            shadowOpacity: 0.1,
+            shadowRadius: 10,
+            elevation: 5,
+        },
+        header: {
+            flexDirection:'row',
+            paddingLeft:20,
+            borderBottomEndRadius: 20,
+            borderBottomLeftRadius: 20,
+            width: '100%',
+            height: Dimensions.get('window').height/8,
+            backgroundColor: '#F8F8FF',
+            alignItems:'center',
+            shadowColor: '#000',
+            shadowOpacity: 0.1,
+            shadowRadius: 10,
+            elevation: 5,
+                
+           },
+        image:{
+                width: 90, 
+                height: 90,
+                borderRadius: 30,
             },
-            card: {
-                height:'85%',
-                width:'90%',
-                backgroundColor: '#F8F8FF',
-                borderRadius: 20,
-                paddingVertical: 30,
-                paddingHorizontal: 25,
-                marginTop: 20,
-                marginLeft: 20,
-            },
-            header: {
-                    flexDirection:'row',
-                    paddingLeft:50,
-                    borderBottomEndRadius: 20,
-                    borderBottomLeftRadius: 20,
-                    width: '100%',
-                    height: Dimensions.get('window').height/8,
-                    backgroundColor: '#F8F8FF',
-                    alignItems:'center',
-                    
-               },
-            image:{
-                    width: 90, 
-                    height: 90,
-                    borderRadius: 30,
-                },
-            logo: {
-                fontSize: 22,
-                fontWeight: 'bold',
-                color: '#2563EB',
-                marginBottom: 10,
-            },
-            titleSupremo:{
-                fontSize: 25,
-                color: '#4169E1',
-                fontWeight: 'bold',
-                marginBottom: 0,
-                marginLeft: 25,
-                marginTop:0,
-            },
-            title: {
-                fontSize: 18,
-                fontWeight: '500',
-                color: '#1E3A8A',
-                marginBottom: 10,
-            },
-            inputContainer: {
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: '#F9FAFB',
-                borderWidth: 1,
-                borderColor: '#E5E7EB',
-                borderRadius: 12,
-                paddingHorizontal: 10,
-                width: '90%',
-                marginBottom: 30,
-            },
-            button: {
-                color:'white',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '70%',
-                height: 45,
-                borderRadius: 12,
-                marginTop: 10,
-            },
-            buttonText: {
-                color: '#fff',
-                fontWeight: '600',
-                fontSize: 16,
-                marginRight: 6,
-            },
-            footer: {
-                flexDirection: 'row',
-                marginTop: 20,
-            },
-            footerText: {
-                color: '#374151',
-            },
-            footerLink: {
-                color: '#2563EB',
-                fontWeight: '600',
-            },
+        logo: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: '#2563EB',
+            marginBottom: 10,
+        },
+        titleSupremo:{
+            fontSize: 25,
+            color: '#4169E1',
+            fontWeight: 'bold',
+            marginBottom: 0,
+            marginLeft: 25,
+            marginTop:0,
+           // marginBottom: 20,
+           // marginLeft: 20,
+        },
+        title: {
+            fontSize: 20,
+            fontWeight: '600',
+            color: '#00008B',
+            marginBottom: 5,
+        },
+        inputContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: '#F9FAFB',
+            borderWidth: 1,
+            borderColor: '#E5E7EB',
+            borderRadius: 12,
+            paddingHorizontal: 10,
+            width: '100%',
+            marginBottom: 30,
+        },
+        button: {
+            backgroundColor: '#2563EB',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: 45,
+            borderRadius: 12,
+        },
+        buttonText: {
+            color: '#ffffffff',
+            fontSize: 14,
+            marginRight: 6,
+        },
+        footer: {
+            flexDirection: 'row',
+            marginTop: 20,
+        },
+        footerText: {
+            color: '#374151',
+        },
+        footerLink: {
+            color: '#2563EB',
+            fontWeight: '600',
+        },
+    });
 
-
-
-        });
-    
-    
